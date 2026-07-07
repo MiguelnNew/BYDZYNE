@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYDZYNE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* VARIABLES DE COLORES FUTURISTAS */
+        :root {
+            --bg-principal: #0a0f1d; /* Azul medianoche muy oscuro */
+            --bg-tarjeta: #131c35;    /* Azul intermedio para bloques */
+            --celeste-neon: #00f0ff;  /* Celeste neón brillante */
+            --azul-neon: #0072ff;     /* Azul de apoyo */
+            --texto-blanco: #ffffff;
+            --texto-gris: #a0aec0;
+        }
+
+        /* ESTILOS GENERALES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-principal);
+            color: var(--texto-blanco);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500; 
+            font-size: 1.1rem; 
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 0;
+        }
+
+        /* HEADER / NAV */
+        header {
+            border-bottom: 2px solid var(--celeste-neon);
+            padding: 20px 0;
+            background: rgba(10, 15, 29, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        } 
+
+        .a {
+          color: white;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand span {
+            color: var(--celeste-neon);
+            text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+        }
+
+        nav a {
+            color: var(--texto-blanco);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--celeste-neon);
+        }
+
+        /* SECCIÓN HERO (BIENVENIDA) */
+        .hero {
+            text-align: center;
+            padding: 100px 0 60px 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: var(--texto-claro);
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-neon {
+            background: transparent;
+            color: var(--celeste-neon);
+            border: 2px solid var(--celeste-neon);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        .btn-neon:hover {
+            background: var(--celeste-neon);
+            color: var(--bg-principal);
+            box-shadow: 0 0 25px var(--celeste-neon);
+        }
+
+        /* SECCIÓN CATÁLOGO (4 PRODUCTOS) */
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .producto-card {
+            background-color: var(--bg-tarjeta);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        /* EFECTO DE RELIEVE MEJORADO EN LA TARJETA */
+        .producto-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--celeste-neon);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4), inset 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        /* ESTILO PARA LAS IMÁGENES CON EFECTO DE RELIEVE */
+        .producto-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* RELIEVE E ILUMINACIÓN EN LA IMAGEN AL PASAR EL MOUSE */
+        .producto-img:hover {
+            filter: brightness(1.2);
+            border-color: #ffffff;
+            box-shadow: 0 0 15px var(--celeste-neon);
+        }
+
+        .producto-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .precio {
+            color: var(--celeste-neon);
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* SECCIÓN RECLUTAMIENTO / FORMULARIOS */
+        .seccion-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+        }
+
+        .info-recluta {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .info-recluta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .form-box {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--bg-tarjeta);
+            padding: 30px;
+            border-radius: 12px;
+            border-bottom: 4px solid var(--celeste-neon);
+        }
+
+        .form-box h3 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--texto-gris);
+            font-size: 0.9rem;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--bg-principal);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: var(--texto-blanco);
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .input-group input:focus {
+            border-color: var(--celeste-neon);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(45deg, var(--azul-neon), var(--celeste-neon));
+            color: var(--texto-blanco);
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--texto-gris);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="brand">BY<span>DZYNE</span></div>
+            <nav>
+                <a href="#productos">Productos</a>
+                <a href="#reclutamiento">Negocio</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container hero">
+        <h1>BYDZYNE</h1>
+        <p>Adquiere nuestros productos exclusivos o únete a nuestra red de emprendedores masivos desde cualquier lugar.</p>
+        <a href="#productos" class="btn btn-neon">Ver Catálogo</a>
+    </section>
+
+    <section id="productos" class="container">
+        <h2 style="text-align: center; margin-bottom: 10px;">Catálogo Exclusivo</h2>
+        <p style="text-align: center; color: var(--texto-gris); margin-bottom: 25px;">Selecciona el producto q desea Adquiri hoy (Haz clic en la imagen para ver el video)</p>
+        
+        <div class="productos-grid">
+            <div class="producto-card">
+                <img src="producto_1.jpg" alt="MPG-CAPS" class="producto-img" onclick="abrirVideo('producto_1.mp4')">
+                <h3>MPG-CAPS</h3>
+                <button class="btn-submit" onclick="abrirCompra('MPG-CAPS')">Más Información</button>
+            </div>
+            <div class="producto-card">
+                <img src="producto_2.jpg" alt="VITERA / VITERA AQUA" class="producto-img" onclick="abrirVideo('producto_2.mp4')">
+                <h3>VITERA CORE /VITERA AQUA</h3>
+                <button class="btn-submit" onclick="abrirCompra('VITERA CORE / VITERA AQUA')">Más Información</button>
+            </div>
+            <div class="producto-card">
+                <img src="producto_3.jpg" alt="QUANTUMÉ" class="producto-img" onclick="abrirVideo('producto_3.mp4')">
+                <h3>QUANTUMÉ</h3>
+                <button class="btn-submit" onclick="abrirCompra('QUANTUMÉ')">Más Información</button>
+            </div>
+            <div class="producto-card">
+                <img src="producto_4.jpg" alt="VITERA STEP" class="producto-img" onclick="abrirVideo('producto_4.mp4')">
+                <h3>VITERA STEP</h3>
+                <button class="btn-submit" onclick="abrirCompra('VITERA STEP')">Más Información</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="reclutamiento" class="container">
+        <div class="seccion-flex">
+            
+            <div class="info-recluta">
+                <h2>¿Quieres generar ingresos?</h2>
+                <p style="color: var(--texto-gris); margin-bottom: 20px;">Reclutamos mentes despiertas que busquen vender nuestros productos y expandir su propio negocio digital. Te damos las herramientas y la información necesaria.</p>
+                <p>✔️ Comisiones altas.<br>✔️ Manejo de tu propio tiempo.<br>✔️ Capacitación constante.</p>
+            </div>
+
+            <div class="form-box" id="caja-formulario">
+                <h3 id="form-titulo">Unirse al Equipo de Ventas</h3>
+                <form id="miFormulario" onsubmit="enviarAWhatsApp(event)">
+                    <input type="hidden" id="form-tipo" value="reclutamiento">
+                    <input type="hidden" id="producto-seleccionado" value="">
+
+                    <div class="input-group">
+                        <label for="nombre">Tu Nombre</label>
+                        <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="telefono">Número de Teléfono / WhatsApp</label>
+                        <input type="tel" id="telefono" placeholder="Ej. 0999999999" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="btn-texto">Enviar Solicitud</button>
+                    <p id="reset-form" style="text-align: center; margin-top: 15px; font-size: 0.8rem; color: var(--celeste-neon); cursor: pointer; display: none;" onclick="modoReclUTamiento()">Quiero unirme al negocio en lugar de comprar</p>
+                </form>
+            </div>
+
+        </div>
+    </section>
+    
+    <section style="text-align: center; padding: 20px 0;">
+        <h2>Contacto</h2>
+        <a href="https://www.tiktok.com/@edisonfabiandelacruz?_r=1&_t=ZS-97opIuOnyo4" class="a" target="_blank">TikTok </a>
+        <a href="https://www.instagram.com/edisonfabiandelacruz?igsh=cHE5cmNkMGU0cXY4" class="a" target="_blank">| Instagram</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 BYDZYNE.</p>
+    </footer>
+
+    <div id="modal-video" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 8, 20, 0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column;">
+        <button onclick="cerrarVideo()" style="background: var(--celeste-neon); color: var(--bg-principal); border: none; padding: 12px 30px; font-weight: 900; font-size: 1.2rem; border-radius: 8px; margin-bottom: 20px; cursor: pointer; box-shadow: 0 0 15px var(--celeste-neon);">
+            ❌ CERRAR VIDEO
+        </button>
+        <video id="reproductor" controls style="width: 90%; max-width: 800px; border: 3px solid var(--celeste-neon); border-radius: 12px; box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);">
+            Tu navegador no soporta videos.
+        </video>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. FUNCIÓN DE SEGURIDAD (ANTI-SCRIPT)
+        // ==========================================
+        function limpiarTexto(texto) {
+            return texto
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;")
+                .trim();
+        }
+
+        // ==========================================
+        // 2. MODO COMPRA DE PRODUCTO
+        // ==========================================
+        function abrirCompra(nombreProducto) {
+            document.getElementById('form-titulo').innerText = `Comprar: ${nombreProducto}`;
+            document.getElementById('form-tipo').value = "compra";
+            document.getElementById('producto-seleccionado').value = nombreProducto;
+            document.getElementById('btn-texto').innerText = "Solicitar Producto";
+            document.getElementById('reset-form').style.display = "block";
+            
+            // Hace scroll automático hacia el formulario
+            document.getElementById('caja-formulario').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ==========================================
+        // 3. REGRESAR A MODO RECLUTAMIENTO
+        // ==========================================
+        function modoReclUTamiento() {
+            document.getElementById('form-titulo').innerText = "Unirse al Equipo de Ventas";
+            document.getElementById('form-tipo').value = "reclutamiento";
+            document.getElementById('producto-seleccionado').value = "";
+            document.getElementById('btn-texto').innerText = "Enviar Solicitud";
+            document.getElementById('reset-form').style.display = "none";
+        }
+
+        // ==========================================
+        // 4. PROCESAR Y ENVIAR A WHATSAPP
+        // ==========================================
+        function enviarAWhatsApp(event) {
+            event.preventDefault(); 
+
+            // Número real de tu tío sin el 0 inicial de Ecuador
+            const NUMERO_TELEFONO = "593999104164"; 
+
+            // Capturar datos crudos
+            const nombreRaw = document.getElementById('nombre').value;
+            const telefonoRaw = document.getElementById('telefono').value;
+            
+            // Filtrar datos con la función de seguridad
+            const nombre = limpiarTexto(nombreRaw);
+            const telefono = limpiarTexto(telefonoRaw);
+            
+            const tipo = document.getElementById('form-tipo').value;
+            const producto = document.getElementById('producto-seleccionado').value;
+
+            let mensaje = "";
+
+            if (tipo === "compra") {
+                mensaje = `Hola! Me interesa comprar un producto.%0A%0A*Detalles:*%0A👤 *Nombre:* ${nombre}%0A📱 *Contacto:* ${telefono}%0A📦 *Producto:* ${producto}`;
+            } else {
+                mensaje = `Hola! Quiero unirme al equipo de trabajo y reclutamiento.%0A%0A*Detalles:*%0A👤 *Nombre:* ${nombre}%0A📱 *Contacto:* ${telefono}`;
+            }
+
+            // Abrir API de WhatsApp
+            const urlWhatsApp = `https://wa.me/${NUMERO_TELEFONO}?text=${mensaje}`;
+            window.open(urlWhatsApp, '_blank');
+        }
+
+        // ==========================================
+        // 5. CONTROL DEL REPRODUCTOR DE VIDEO PROMO
+        // ==========================================
+        function abrirVideo(rutaVideo) {
+            const modal = document.getElementById('modal-video');
+            const reproductor = document.getElementById('reproductor');
+            
+            reproductor.src = rutaVideo; // Asigna el video correspondiente
+            modal.style.display = "flex"; // Muestra la ventana flotante
+            reproductor.play(); // Inicia la reproducción automática
+        }
+
+        function cerrarVideo() {
+            const modal = document.getElementById('modal-video');
+            const reproductor = document.getElementById('reproductor');
+            
+            reproductor.pause(); // Pausa el video para que no siga sonando de fondo
+            reproductor.src = ""; // Limpia la ruta
+            modal.style.display = "none"; // Oculta la ventana
+        }
+    </script>
+</body>
+</html>
