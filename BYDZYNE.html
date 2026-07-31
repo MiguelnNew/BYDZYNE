@@ -97,7 +97,7 @@
         }
 
         .hero p {
-            color: var(--texto-claro);
+            color: var(--texto-gris);
             font-size: 1.4rem;
             max-width: 700px;
             margin: 0 auto 40px auto;
@@ -357,11 +357,11 @@
         <p>&copy; 2026 BYDZYNE.</p>
     </footer>
 
-    <div id="modal-video" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 8, 20, 0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column;">
-        <button onclick="cerrarVideo()" style="background: var(--celeste-neon); color: var(--bg-principal); border: none; padding: 12px 30px; font-weight: 900; font-size: 1.2rem; border-radius: 8px; margin-bottom: 20px; cursor: pointer; box-shadow: 0 0 15px var(--celeste-neon);">
+    <div id="modal-video" style="display:none;position:fixed;inset:0;background:rgba(5,8,20,.95);z-index:1000;align-items:center;justify-content:center;padding:70px 20px 20px;box-sizing:border-box;">
+        <button onclick="cerrarVideo()" style="position:absolute;top:20px;right:20px;background:var(--celeste-neon);color:var(--bg-principal);border:none;padding:12px 20px;font-weight:900;font-size:1rem;border-radius:8px;cursor:pointer;z-index:9999;box-shadow:0 0 15px var(--celeste-neon);">
             ❌ CERRAR VIDEO
         </button>
-        <video id="reproductor" controls style="width: 90%; max-width: 800px; border: 3px solid var(--celeste-neon); border-radius: 12px; box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);">
+        <video id="reproductor" controls style="width:90%;max-width:800px;max-height:75vh;height:auto;border:3px solid var(--celeste-neon);border-radius:12px;box-shadow:0 0 30px rgba(0,240,255,.4);">
             Tu navegador no soporta videos.
         </video>
     </div>
@@ -447,7 +447,7 @@
             
             reproductor.src = rutaVideo; // Asigna el video correspondiente
             modal.style.display = "flex"; // Muestra la ventana flotante
-            reproductor.play(); // Inicia la reproducción automática
+            reproductor.play().catch(()=>{}); // Inicia la reproducción automática
         }
 
         function cerrarVideo() {
@@ -458,6 +458,8 @@
             reproductor.src = ""; // Limpia la ruta
             modal.style.display = "none"; // Oculta la ventana
         }
-    </script>
+    document.addEventListener("keydown",e=>{if(e.key==="Escape")cerrarVideo();});
+document.getElementById("modal-video").addEventListener("click",function(e){if(e.target===this)cerrarVideo();});
+</script>
 </body>
 </html>
